@@ -18,6 +18,6 @@ Cell::Cell(CellColor color_, QPoint relativePos_): color(color_), relativePos(re
 
 void Cell::fillWithColor()
 {
-	const QString currentColorStr = (color == CellColor::WHITE ? cellWhiteColor : cellBlackColor).name();
+	const QString currentColorStr = (color == CellColor::WHITE ? Config::cellWhiteColor : Config::cellBlackColor).name();
 	setStyleSheet(QString("QLabel {background-color: %1; color: red;}").arg(currentColorStr));
 }

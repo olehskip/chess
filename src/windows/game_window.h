@@ -3,7 +3,7 @@
 
 #include <QWidget>
 
-#include "widgets/board_widget.h"
+#include "widgets/board.h"
 #include "widgets/side_panel.h"
 
 #include "logic/game_logic.h"

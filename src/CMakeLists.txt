@@ -16,13 +16,13 @@ find_package(QT NAMES Qt6 COMPONENTS Widgets REQUIRED)
 find_package(Qt6 COMPONENTS Widgets Multimedia REQUIRED)
 set(PROJECT_SOURCES
         main.cpp
-        logic/game_logic.h logic/game_logic.cpp
+        logic/game_logic.h logic/game_logic.cpp logic/game_logic.tpp
         logic/piece.h logic/piece.cpp
         logic/cell.h logic/cell.cpp
         logic/point.h logic/point.cpp
         logic/player_color.h logic/player_color.cpp
         windows/game_window.h windows/game_window.cpp
-        widgets/board_widget.h widgets/board_widget.cpp
+        widgets/board.h widgets/board.cpp
         widgets/cell.h widgets/cell.cpp
         widgets/piece.h widgets/piece.cpp
         widgets/side_panel.h widgets/side_panel.cpp

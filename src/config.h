@@ -2,11 +2,13 @@
 #define CONFIG_H
 
 #include <QString>
+#include <QColor>
 
 namespace Config
 {
 	const int CELLS_IN_THE_ROW = 8;
 
+	const static QColor cellBlackColor = QColor("#4b7399"), cellWhiteColor = QColor("#eae9d2");
 	namespace PIECE_PATHS
 	{
 		const QString WHITE_BISHOP = ":/white_pieces/bishop.png";

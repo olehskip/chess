@@ -10,9 +10,9 @@ GameLogic::GameLogic()
 void GameLogic::startNewGame()
 {
 	currentTurn = PlayerColor::WHITE;
+	gameStatus = GameStatus::ACTIVE;
 	fillCells();
 	fillPieces();
-	gameStatus = GameStatus::ACTIVE;
 }
 
 Logic::MoveResponse GameLogic::makeMove(Point oldRelPos, Point newRelPos)

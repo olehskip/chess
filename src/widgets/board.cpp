@@ -1,4 +1,4 @@
-#include "board_widget.h"
+#include "board.h"
 
 using Widgets::Board;
 

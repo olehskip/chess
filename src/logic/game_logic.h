@@ -37,35 +37,26 @@ public:
 	void startNewGame();
 
 	MoveResponse makeMove(Point oldRelPos, Point newRelPos);
+
+	/*
+	 * T - a class to which promote
+	 * there are no arguments because the class memorizes which piece to promote
+	 * this function is used when the player decides what piece type he wants to promote the piece to
+	 */
 	template<typename T>
-	bool makePromotion()
-	{
-		if(!std::is_same_v<T, Queen> && !std::is_same_v<T, Rook> && !std::is_same_v<T, Bishop> && !std::is_same_v<T, Knight>)
-			return false;
-
-		if(gameStatus != GameStatus::PROMOTION_REQUIRED || !promotionRelPos.has_value())
-			return false;
-
-		auto piece = getPiece(promotionRelPos.value());
-		if(piece.has_value() && checkPieceType<Pawn>(**piece.value())) {
-			const auto color = (*piece.value())->color;
-			pieces.erase(piece.value());
-			pieces.emplace_back(new T(color, promotionRelPos.value()));
-			gameStatus = GameStatus::ACTIVE;
-			promotionRelPos = std::nullopt;
-			checkForCheckmate();
-			checkForStalemate();
-			return true;
-		}
-
-		return false;
-	}
+	bool makePromotion();
 
 	GameStatus getGameStatus() const;
 
 private:
 	PlayerColor currentTurn = PlayerColor::WHITE;
 	GameStatus gameStatus = GameStatus::ACTIVE;
+
+	/*
+	 * When a pawn reaches the end of the board, then the player should promote the piece,
+	 * but Board class is responsible for the offering promotion(futhermore the player thinking can take a bit)
+	 * so we need to memorize what piece to promote
+	 */
 	std::optional<Point> promotionRelPos = std::nullopt;
 
 	std::vector<std::vector<std::unique_ptr<Cell>>> cells;
@@ -74,13 +65,13 @@ private:
 	void fillPieces();
 	void fillCells();
 
-	std::optional<PieceIt> getPiece(Point relPos); // returns a piece with relPos, if there is no such piece then an exception is thrown
+	std::optional<PieceIt> getPiece(Point relPos); // returns a piece with relPos
 	Cell &getCell(Point relPos);  // returns a cell with relPos, if there is no such cell then an exception is thrown
 
 	/*
-	 * Returns position of all the cells that lie on the *line between startPos and ensPos(startPos and endPos are not included)
+	 * Returns position of all the cells that lie on the *line between startPos and endPos(startPos and endPos are not included)
 	 * we need this function, because all the pieces(except the knight) can't jump over other pieces
-	 * line can be horizontal, vertical or diagonal, otherwise nothing is returned
+	 * *line can be horizontal, vertical or diagonal, otherwise an empty list is returned
 	*/
 	std::list<Point> getPosBetween(Point startPos, Point endPos);
 	bool areCellsNotOccupied(std::list<Point> cells);
@@ -101,10 +92,7 @@ private:
 
 
 	template<class T>
-	bool checkPieceType(const Piece &piece)
-	{
-		return dynamic_cast<const T*>(&piece) != nullptr;
-	}
+	bool checkPieceType(const Piece &piece);
 	Point getKingPos(PlayerColor playerColor);
 
 	void switchTurn();
@@ -116,5 +104,7 @@ private:
 	bool checkForCheckmate();
 	bool checkForStalemate();
 };
+
+#include "game_logic.tpp"
 
 #endif // LOGIC_GAME_LOGIC_H

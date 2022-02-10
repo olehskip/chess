@@ -6,6 +6,7 @@
 #include <QColor>
 #include <QString>
 
+#include "config.h"
 
 namespace Widgets
 {
@@ -17,7 +18,7 @@ namespace Widgets
 	};
 
 	CellColor inverseColor(CellColor cellColor);
-	const static QColor cellBlackColor = QColor("#4b7399"), cellWhiteColor = QColor("#eae9d2");
+
 };
 
 class Widgets::Cell: public QLabel

@@ -27,18 +27,21 @@ class Widgets::Board: public QWidget
 public:
 	Board();
 
-	// when the class sends a signal that a move was made, logic class approves this move and gameWindow should call this function
+	// after a move, a signal is sent that a move was made, logic class approves this move and gameWindow should call this function
 	void acceptMove(QPoint pieceOriginalRelPos, QPoint pieceNewRelPos);
 	// when a move was not approved by logic we should put the piece back
 	void putPieceBack(QPoint pieceRelPos);
+	// when a piece was captured we have to delete it
 	void removePiece(QPoint pieceRelPos);
+	// offer the player to make a decision which piece type to pick to promote the piece to
 	void makePromotion(QPoint pieceRelPos);
 
 	void startNewGame();
 
 signals:
-	// this signal indicates that the player tried to make a move, the move isn't necessarily legal
+	// this signal indicates that the player tried to make a move(the move isn't necessarily legal)
 	void moveWasMade(QPoint pieceOriginalRelPos, QPoint pieceNewRelPos);
+	// when a player decided which piece type to pick to promote the piece to
 	SelectedPieceType promotionWasMade(SelectedPieceType selectedPieceType);
 
 private:

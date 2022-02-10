@@ -26,8 +26,6 @@ public:
 	void turnToWhite();
 	void turnToBlack();
 
-	void selected();
-
 private:
 	void setBackgroundImage(QString backgroudImagePath);
 	const QString whitePiecePath, blackPiecePath;

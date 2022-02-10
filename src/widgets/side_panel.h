@@ -22,12 +22,11 @@ class Widgets::SidePanel: public QWidget
 public:
 	SidePanel();
 
-	void addNotation(QString notationText);
-	void addEndgameNotification(QString text);
-	QTableWidgetItem *createItem(QString text);
+	void addNotation(QString notationText); // a move was made
+	void addEndgameNotification(QString text); // checkmate or stalemate
 
 signals:
-	void newGameTriggered();
+	void newGameTriggered(); // new game button is triggered
 
 private:
 	QGridLayout mainLayout;
@@ -36,6 +35,11 @@ private:
 
 	bool currentColumnIndex = 0;
 
+	/*
+	 * Returns a pointer to a QTableWidgetItem,
+	 * we need this function in order to make all the items look the same
+	 */
+	QTableWidgetItem *createItem(QString text);
 	void newGame();
 };
 
