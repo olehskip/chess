@@ -13,7 +13,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(QT NAMES Qt6 COMPONENTS Widgets REQUIRED)
 
-find_package(Qt6 COMPONENTS Widgets Multimedia REQUIRED)
+find_package(Qt6 COMPONENTS Widgets REQUIRED)
 set(PROJECT_SOURCES
         main.cpp
         logic/game_logic.h logic/game_logic.cpp logic/game_logic.tpp
@@ -55,7 +55,7 @@ else()
     endif()
 endif()
 
-target_link_libraries(chess PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Multimedia)
+target_link_libraries(chess PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
 set(CMAKE_CXX_FLAGS_DEBUG_INIT "-g -O0 -force-debug-info")
 target_compile_options(chess PRIVATE -Wall -Wextra -pedantic)
 
